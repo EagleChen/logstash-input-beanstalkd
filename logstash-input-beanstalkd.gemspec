@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   # Gem dependencies
   s.add_runtime_dependency "logstash-core", ">= 2.0.0", "< 3.0.0"
-  s.add_runtime_dependency 'logstash-codec-plain'
+  s.add_runtime_dependency 'logstash-codec-plain', ">= 2.0.2", "< 3.0.0"
   s.add_runtime_dependency "beaneater", ">= 1.0.0", "< 2.0.0"
-  s.add_development_dependency 'logstash-devutils', '>= 0.0.16'
+  s.add_development_dependency "logstash-devutils", ">= 0.0.16", "< 1.0.0"
 end

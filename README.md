@@ -24,11 +24,12 @@ input {
     priority => 5
     delay => 5
     ttr => 120
-    reserve => 5
+    reserve_timeout => 5
   }
 }
 ```
-`port`, `priority`, `delay`, `ttr` and `reserve` are optional.
+`port`, `priority`, `delay`, `ttr` and `reserve_timeout` are optional.
+*NOTE*: This plugin assumes the job from beanstalkd is in json format !!!
 
 ## Need Help?
 

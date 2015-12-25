@@ -6,7 +6,7 @@ require "beaneater"
 describe LogStash::Inputs::Beanstalkd do
   let (:valid_config) {{'host' => 'localhost', 'tube' => 'test'}}
   let (:empty_config) {{}}
-  let (:non_default_config) {{'host' => 'localhost', 'tube' => 'test', 'priority' => 20, 'delay' => 10, 'ttr' => 10}}
+  let (:non_default_config) {{'host' => 'localhost', 'tube' => 'test', 'priority' => 20, 'delay' => 10, 'ttr' => 10, 'reserve_timeout' => 5}}
   let (:conf) {
     <<-CONFIG
       input {

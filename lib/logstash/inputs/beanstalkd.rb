@@ -28,8 +28,8 @@ class LogStash::Inputs::Beanstalkd < LogStash::Inputs::Base
   # The 'time to run' of the job
   config :ttr, :validate => :number, :default => 120
 
-  # The reserve time of the job in second
-  config :reserve, :validate => :number, :default => 5
+  # The reserve timeout of the job in second
+  config :reserve_timeout, :validate => :number, :default => 5
 
   public
   def register
@@ -44,8 +44,8 @@ class LogStash::Inputs::Beanstalkd < LogStash::Inputs::Base
 
   def run(queue)
     while !stop?
-      job = @beanstalk.tubes.reserve(@reserve)
       begin
+        job = @beanstalk.tubes.reserve(@reserve_timeout)
         event = LogStash::Event.new(JSON.parse(job.body))
         decorate(event)
         queue << event
@@ -53,6 +53,9 @@ class LogStash::Inputs::Beanstalkd < LogStash::Inputs::Base
       rescue IOError, EOFError, LogStash::ShutdownSignal => e
         # stdin closed or a requested shutdown
         break
+      rescue Beaneater::TimedOutError
+        # no job right now, just do another reserve
+        next
       rescue => e
         @logger.warn(["Trouble parsing beanstalk job",
                      {:error => e.message, :body => job.body,
