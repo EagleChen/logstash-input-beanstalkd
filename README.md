@@ -12,7 +12,7 @@ Logstash provides infrastructure to automatically generate documentation for thi
 - For more asciidoc formatting tips, see the excellent reference here https://github.com/elastic/docs#asciidoc-guide
 
 ### Installation
-`bin/plugin install logstash-input-beanstalkd
+`bin/plugin install logstash-input-beanstalkd`
 
 ### Sample Config
 ```
