@@ -1,4 +1,4 @@
-# Logstash Plugin
+# Logstash Input Beanstalkd
 
 This is a plugin for [Logstash](https://github.com/elastic/logstash) to fetch jobs from [beanstalkd](https://github.com/kr/beanstalkd).
 
@@ -10,6 +10,25 @@ Logstash provides infrastructure to automatically generate documentation for thi
 
 - For formatting code or config example, you can use the asciidoc `[source,ruby]` directive
 - For more asciidoc formatting tips, see the excellent reference here https://github.com/elastic/docs#asciidoc-guide
+
+### Installation
+`bin/plugin install logstash-input-beanstalkd
+
+### Sample Config
+```
+input {
+  beanstalkd {
+    host => "localhost"
+    port => 11300
+    tube => "test"
+    priority => 5
+    delay => 5
+    ttr => 120
+    reserve => 5
+  }
+}
+```
+`port`, `priority`, `delay`, `ttr` and `reserve` are optional.
 
 ## Need Help?
 
